@@ -9,7 +9,7 @@ app.use(cors());
 
 // Replace with your actual target endpoint
 const targetEndpoint = 'http://3.128.255.143';
-
+//change beta 
 app.get('/', async (req, res) => {
     let targetResponseTime = 0;
     try {
