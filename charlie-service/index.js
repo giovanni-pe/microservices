@@ -8,7 +8,7 @@ const port = 3000;
 app.use(cors());
 
 // Replace with your actual target endpoint
-const targetEndpoint = 'http://18.118.208.28:443';
+const targetEndpoint = 'http://3.128.255.143';
 
 app.get('/', async (req, res) => {
     let targetResponseTime = 0;
