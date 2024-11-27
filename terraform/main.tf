@@ -121,7 +121,7 @@ resource "aws_instance" "ecs_instance_2" {
 
               # Clone your Node.js app from the Git repository (replace with your repo)
               cd /home/ec2-user
-              git clone https://github.com/Fabrizzio-Esquivel-UNAS/HolaMundoCloud_APIGatewayEdition.git nodeapp
+              git clone https://github.com/giovanni-pe/microservices.git nodeapp
               cd nodeapp/charlie-service
 
               # Build the Docker image
