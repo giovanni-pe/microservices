@@ -7,9 +7,9 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  BUCKET_NAME: hola-mundo-cloud-bucket
-  EC2_HOST_1: 18.117.103.174
-  EC2_HOST_2: 18.222.156.128
+  BUCKET_NAME: my-frontend-bucket2
+  EC2_HOST_1: 3.128.255.143
+  EC2_HOST_2: 13.58.200.49
   REPO_URL: https://github.com/Fabrizzio-Esquivel-UNAS/HolaMundoCloud_APIGatewayEdition.git
   
 jobs:
