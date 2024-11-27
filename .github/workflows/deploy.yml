@@ -10,7 +10,7 @@ env:
   BUCKET_NAME: my-frontend-bucket2
   EC2_HOST_1: 3.128.255.143
   EC2_HOST_2: 13.58.200.49
-  REPO_URL: https://github.com/Fabrizzio-Esquivel-UNAS/HolaMundoCloud_APIGatewayEdition.git
+  REPO_URL: https://github.com/giovanni-pe/microservices.git
   
 jobs:
   install-dependencies:
@@ -130,7 +130,7 @@ jobs:
 
             # Clone your Node.js app from the Git repository (replace with your repo)
             cd /home/ec2-user
-            git clone https://github.com/Fabrizzio-Esquivel-UNAS/HolaMundoCloud_APIGatewayEdition.git nodeapp
+            git clone https://github.com/giovanni-pe/microservices.git nodeapp
             cd nodeapp/charlie-service
 
             # Build the Docker image
