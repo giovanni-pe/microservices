@@ -8,8 +8,8 @@ on:
 env:
   AWS_REGION: us-east-2
   BUCKET_NAME: my-frontend-bucket2
-  EC2_HOST_1: 18.218.1.105
-  EC2_HOST_2: 3.138.100.63
+  EC2_HOST_1: 3.128.30.195
+  EC2_HOST_2: 52.15.89.201
   REPO_URL: https://github.com/giovanni-pe/microservices.git
   
 jobs:
@@ -131,7 +131,7 @@ jobs:
             # Clone your Node.js app from the Git repository (replace with your repo)
             cd /home/ec2-user
             git clone https://github.com/giovanni-pe/microservices.git nodeapp
-            cd nodeapp/charlie-service
+            cd nodeapp/programa
 
             # Build the Docker image
             sudo docker build -t nodeapp .
