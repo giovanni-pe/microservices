@@ -359,7 +359,7 @@ resource "aws_api_gateway_integration_response" "instance_2_integration_response
 
   # Transforms the backend JSON response to XML
   response_templates = {
-    "application/json" = "#set($inputRoot = $input.path('$'))\n$inputRoot" # This simply returns the raw body from the backend
+    "application/json" = "#set($inputRoot = $input.path('$'))\n$inputRoot"
   }
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
