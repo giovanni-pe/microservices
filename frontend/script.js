@@ -1,5 +1,5 @@
-const endpoint1 = "https://dr7bzl696i.execute-api.us-east-2.amazonaws.com/stage/instance1"; // API Gateway path for EC2 instance 1
-const endpoint2 = "https://dr7bzl696i.execute-api.us-east-2.amazonaws.com/stage/instance2"; // API Gateway path for EC2 instance 2
+const endpoint1 = "https://kfxyw7tyo4.execute-api.us-east-2.amazonaws.com/stage/instance1"; // API Gateway path for EC2 instance 1
+const endpoint2 = "https://kfxyw7tyo4.execute-api.us-east-2.amazonaws.com/stage/instance2"; // API Gateway path for EC2 instance 2
 
 // Function to measure the response time and display the message
 async function measureTime(endpoint, resultElementId, responseElementId) {
