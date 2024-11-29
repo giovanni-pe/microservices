@@ -7,7 +7,7 @@ const port = 3001;
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('¡Hola desde Beta!');
+    res.send('Cronograma de conferencias');
 });
 
 app.listen(port, () => {
