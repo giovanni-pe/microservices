@@ -30,6 +30,7 @@ app.use((err, req, res, next) => {
     const latency = Date.now() - startTime;  // Latency during error processing
 
     res.status(500).json({
+        service: 'cronograma',
         error: 'Internal Server Error',
         message: err.message || 'Something went wrong!',
         startTime: startTime,

@@ -8,36 +8,39 @@ const port = 3000;
 app.use(cors());
 
 // Replace with your actual target endpoint
-const targetEndpoint = 'http://localhost:443';  // Cronograma endpoint
+const targetEndpoint = 'http://localhost:443';  
 
 app.get('/', async (req, res) => {
-    const startTime = Date.now();  // Record the time when the request is received
-    let targetResponseTime = 0;
-    let statusCode = 200;  // Default to OK status code
+    const requestStartTime = Date.now();
+    let cronogramaToPonenciaLatency = 0;
+    let statusCode = 200;  
 
     try {
-        // Make a request to the other endpoint (cronograma)
-        const responseStartTime = Date.now();
-        const response = await axios.get(targetEndpoint);
-        targetResponseTime = Date.now() - responseStartTime;  // Calculate response time
+        const cronogramaRequestStartTime = Date.now();
+        const cronogramaResponse = await axios.get(targetEndpoint);
+        cronogramaToPonenciaLatency = Date.now() - cronogramaRequestStartTime;
+        const totalRequestLatency = Date.now() - requestStartTime;
+        const combinedResponse = {
+            ...cronogramaResponse.data, 
+            message: cronogramaResponse.data.message || 'Cronograma de conferencias',
+            cronogramaToPonenciaLatency,  
+            totalRequestLatency,  
+            requestStartTime,  
+        };
+
+        // Send the combined response back to the client
+        res.status(statusCode).json(combinedResponse);
+
     } catch (error) {
-        console.error('Error calling Beta endpoint:', error.message);
+        console.error('Error calling cronograma endpoint:', error.message);
         statusCode = 500;  // If there's an error, set status code to 500 (Internal Server Error)
         return res.status(statusCode).json({
-            error: 'Error calling Beta endpoint',
+            service: 'ponencias',
+            error: 'Error calling cronograma endpoint',
             message: error.message || 'There was an issue connecting to the cronograma.',
-            startTime: startTime,
+            requestStartTime: requestStartTime,
         });
     }
-
-    const latency = Date.now() - startTime;  // Calculate latency from request to response
-
-    res.status(statusCode).json({
-        message: 'Cronograma response',
-        startTime: startTime,
-        latency: latency,  // Latency in ms from request to response
-        targetResponseTime: targetResponseTime,  // Latency of the cronograma endpoint response
-    });
 });
 
 app.listen(port, () => {
