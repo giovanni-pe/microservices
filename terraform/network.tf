@@ -28,7 +28,7 @@ resource "aws_route" "internet_access" {
 
 # Create a security group to allow HTTP traffic to the ECS instances
 resource "aws_security_group" "ecs_sg" {
-  name = "ecs_sg_HolaMundoCloud"
+  name = "ecs_sg_FIIS"
   vpc_id = "${aws_vpc.vpc_example_app.id}"
 
   ingress {

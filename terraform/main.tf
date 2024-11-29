@@ -6,12 +6,12 @@ provider "aws" {
 
 # Create an ECS cluster using EC2
 resource "aws_ecs_cluster" "node_app_cluster" {
-  name = "HolaMundoCloud-cluster"
+  name = "FIIS-cluster"
 }
 
 # IAM role for the ECS task execution
 resource "aws_iam_role" "ecs_role" {
-  name = "ecs_role_HolaMundoCloud"
+  name = "ecs_role_FIIS"
 
   assume_role_policy = <<POLICY
 {
@@ -37,7 +37,7 @@ resource "aws_iam_role_policy_attachment" "ecs_policy_attachment" {
 
 # ECS instance profile
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
-  name = "ecsInstanceProfile_HolaMundoCloud"
+  name = "ecsInstanceProfile_FIIS"
   role = aws_iam_role.ecs_instance_role.name
 }
 
@@ -54,7 +54,7 @@ data "aws_iam_policy_document" "instance_assume_role_policy" {
 }
 
 resource "aws_iam_role" "ecs_instance_role" {
-  name               = "ecsInstanceRole_HolaMundoCloud"
+  name               = "ecsInstanceRole_FIIS"
   path               = "/system/"
   assume_role_policy = data.aws_iam_policy_document.instance_assume_role_policy.json
 }
@@ -380,6 +380,7 @@ resource "aws_api_gateway_stage" "api_stage" {
   deployment_id = aws_api_gateway_deployment.api_deployment.id
   rest_api_id   = aws_api_gateway_rest_api.api_gateway.id
   stage_name    = "stage"
+  
 }
 
 # Outputs for EC2 public IPs and API Gateway URL
