@@ -5,3 +5,4 @@ terraform/terraform.tfvars
 terraform/.terraform.lock.hcl
 HolaMundoCloudKey.pem
 terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
