@@ -8,8 +8,8 @@ on:
 env:
   AWS_REGION: us-east-2
   BUCKET_NAME: my-frontend-bucket2
-  EC2_HOST_1: 18.224.51.221
-  EC2_HOST_2: 3.128.27.22
+  EC2_HOST_1: 18.226.34.74
+  EC2_HOST_2: 3.128.181.222
   REPO_URL: https://github.com/giovanni-pe/microservices.git
   
 jobs:
