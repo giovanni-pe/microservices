@@ -8,7 +8,7 @@ const port = 3000;
 app.use(cors());
 
 // Replace with your actual target endpoint
-const targetEndpoint = 'http://localhost:3000';  
+const targetEndpoint = 'http://beta-service:3001';  
 
 app.get('/', async (req, res) => {
     const requestStartTime = Date.now();
