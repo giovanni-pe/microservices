@@ -8,7 +8,7 @@ const port = 3000;
 app.use(cors());
 
 // Variable para determinar si se usan datos locales
-const useLocalService = false; 
+const useLocalService = true; 
 
 // Endpoint externo
 const localService = 'http://beta-service:3001';
@@ -21,6 +21,22 @@ app.get('/', async (req, res) => {
 
     try {
         if (useLocalService) {
+             // Si no se usa datos locales, realiza la consulta al endpoint externo
+             console.log('Realizando consulta al endpoint externo...');
+             const cronogramaRequestStartTime = Date.now();
+             const cronogramaResponse = await axios.get(localService);
+             cronogramaToPonenciaLatency = Date.now() - cronogramaRequestStartTime;
+             const totalRequestLatency = Date.now() - requestStartTime;
+             combinedResponse = {
+                service: "ponencias",
+                 ...cronogramaResponse.data,
+                 message: cronogramaResponse.data.message || 'Cronograma de conferencias',
+                 cronogramaToPonenciaLatency,
+                 totalRequestLatency,
+                 requestStartTime,
+             };
+           
+        } else {
             // Si se usa datos locales, devolvemos un mensaje simulado
             console.log('Usando datos locales simulados...');
             combinedResponse = {
@@ -28,20 +44,6 @@ app.get('/', async (req, res) => {
                 cronogramaToPonenciaLatency: 0,
                 totalRequestLatency: 0,
                 requestStartTime: requestStartTime,
-            };
-        } else {
-            // Si no se usa datos locales, realiza la consulta al endpoint externo
-            console.log('Realizando consulta al endpoint externo...');
-            const cronogramaRequestStartTime = Date.now();
-            const cronogramaResponse = await axios.get(localService);
-            cronogramaToPonenciaLatency = Date.now() - cronogramaRequestStartTime;
-            const totalRequestLatency = Date.now() - requestStartTime;
-            combinedResponse = {
-                ...cronogramaResponse.data,
-                message: cronogramaResponse.data.message || 'Cronograma de conferencias',
-                cronogramaToPonenciaLatency,
-                totalRequestLatency,
-                requestStartTime,
             };
         }
 
