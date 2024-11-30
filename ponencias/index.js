@@ -8,7 +8,7 @@ const port = 3000;
 app.use(cors());
 
 // Replace with your actual target endpoint
-const targetEndpoint = 'http://18.227.49.198:443';  
+const targetEndpoint = 'http://localhost:443';  
 
 app.get('/', async (req, res) => {
     const requestStartTime = Date.now();
