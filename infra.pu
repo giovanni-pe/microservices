@@ -1,0 +1,45 @@
+@startuml
+
+' Definición de los componentes de la infraestructura
+package "AWS Cloud" {
+
+  class "API Gateway\n(HolaMundoAPI)" as API_Gateway {
+    + Instance1 (GET) : /instance1
+    + Instance1_5 (GET) : /instance1_5
+    + Instance2 (GET) : /instance2
+  }
+
+  class "ECS Cluster\nFIIS-cluster" as ECS_Cluster {
+    + EC2 Instance 1 (AMI: Amazon Linux 2)
+    + EC2 Instance 2 (AMI: Amazon Linux 2)
+  }
+
+  class "S3 Bucket\n(Static Frontend)" as S3_Bucket {
+    + index.html
+    + error.html
+  }
+
+  class "VPC (NodeJS-Network)" as VPC {
+    + Subnetwork A (Public)
+    + Subnetwork B (Public)
+  }
+}
+
+' Conexiones entre los recursos
+API_Gateway -down-> ECS_Cluster : "API requests"
+ECS_Cluster -down-> VPC : "EC2 instances within VPC"
+ECS_Cluster -down-> S3_Bucket : "Static assets served from S3"
+
+' Detalles de la comunicación entre los recursos
+"ECS Instance 1" --> "Docker (Node.js Alpha Service)" : "Runs alpha-service"
+"ECS Instance 2" --> "Docker (Node.js Beta Service)" : "Runs beta-service"
+
+' Puertos de comunicación
+"ECS Instance 1" -down-> "API Gateway" : "Port 80 (HTTP)"
+"ECS Instance 2" -down-> "API Gateway" : "Port 443 (HTTPS)"
+
+' Detalles adicionales
+API_Gateway --> VPC : "Uses Public Subnet"
+S3_Bucket -down-> VPC : "Access via Public IP"
+
+@enduml

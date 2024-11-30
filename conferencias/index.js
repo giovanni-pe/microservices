@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // Variable externa para decidir el flujo
-const useExternalApi =false; // Cambia a `false` para seguir el flujo actual
+const useExternalApi =true; // Cambia a `false` para seguir el flujo actual
 
 // Endpoints de las APIs
 const LanEndPoint = 'http://18.226.34.74';
